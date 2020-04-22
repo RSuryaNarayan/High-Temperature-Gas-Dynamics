@@ -1,2 +1,0 @@
-A text file I am using to  test if Git hub is working properly on my laptop.
-Sorry for the irrelavance and digression!
