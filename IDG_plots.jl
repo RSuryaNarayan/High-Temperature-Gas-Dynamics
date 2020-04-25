@@ -45,7 +45,7 @@ for i = 4:7
     alpha_star = (-k .+ sqrt.(k.^2 .+ 4 .* k)) ./ 2;
     T = t.*Θ_d; #compute the absolute temperature range from the temperature fraction
     ρ = ρ_d ./ rho_r #compute the density from the density fraction
-    plot!(T,alpha_star, title = "Degree of dissociation vs. Temperature", label = ρ);
+    plot!(T,alpha_star, title = "Degree of dissociation vs. Temperature", label = "Density=$ρ");
 end
 #Generating the constant enthalpy lines on the alpha plot
 t = 0.04:0.005:0.12; #here t = T/Θ_d, Θ_d being the dissociation temperature
@@ -54,7 +54,7 @@ for i = 1:5
     alpha_star = (h_c .- 4 .*t) ./ (1 .+ t);
     T = t.*Θ_d; #compute the absolute temperature range from the temperature fraction
     H = h_c*R_A2*Θ_d; #compute the absolute enthalpy from the enthalpy fraction
-    plot!(T,alpha_star, linestyle = :dot, label = H);
+    plot!(T,alpha_star, linestyle = :dot, label = "Enthalpy=$H");
 end
 display(plot!(legend = :outertopright));
 #Dotted lines indicate lines of constant enthalpy
@@ -78,7 +78,7 @@ for i = 4:8
     H = h_c.*(R_A2*Θ_d); #compute the absolute enthalpy from the enthalpy fraction
     S = R_A2.*s; #compute the absolute entropy from the entropy fraction
     ρ = ρ_d ./ rho_r #compute the density from the density fraction
-    plot!(S,H, linestyle = :dot, label = ρ,legend = :none);
+    plot!(S,H, linestyle = :dot, label = "Density=$ρ",legend = :none);
 end
 #fix t
 rho_r= 4:0.005:8.5; #here rho_r = ρ_d/ρ;
@@ -93,9 +93,10 @@ for i = 1:6
     ρ = ρ_d ./ rho_r #compute the density from the density fraction
     T = t.*Θ_d; #compute the absolute temperature range from the temperature fraction
     if i==2;
-            plot!(S,H, label = 0.06*Θ_d, legend = :none);
+            temp = 0.06*Θ_d;
+            plot!(S,H, label = "Temperature=$temp", legend = :none);
     else
-    plot!(S,H, label = T, legend = :none);
+    plot!(S,H, label = "Temperature=$T", legend = :none);
     end
 end
 #fix pressure
@@ -108,7 +109,8 @@ for i = 1:8
     H = h_c.*(R_A2*Θ_d); #compute the absolute enthalpy from the enthalpy fraction
     S = R_A2.*s; #compute the absolute entropy from the entropy fraction
     T = t.*Θ_d; #compute the absolute temperature range from the temperature fraction
-    plot!(S,H, legend = :none, legendfontvalign = :bottom);
+    P = ρ_d*R_A2*Θ_d/(10^k); #compute the pressure from the value of k
+    plot!(S,H, legend = :none,label = "Pressure=$P",legendfontvalign = :bottom);
 end
 #fix dissociation
 t = 0.05:0.005:0.1;#here t = T/Θ_d, Θ_d being the dissociation temperature
@@ -118,6 +120,6 @@ for i = 1:10
     s = 3 .*log.(t) .+ alpha_star.*(1 .- 2 .*log.(alpha_star)) .- (1 .- alpha_star).*log.(1 .- alpha_star) .+ (1 .+ alpha_star).*log.((alpha_star.^2 ./ (1 .- alpha_star)) .* (exp.(1 ./ t)));#s = S/RA2
     H = h_c.*(R_A2*Θ_d); #compute the absolute enthalpy from the enthalpy fraction
     S = R_A2.*s; #compute the absolute entropy from the entropy fraction
-    plot!(S,H, linestyle = :dot, label = alpha_star, legend = :none, legendfontvalign = :bottom);
+    plot!(S,H, linestyle = :dot, label = "Dissociation = $alpha_star", legend = :none, legendfontvalign = :bottom);
 end
 display(plot!());
