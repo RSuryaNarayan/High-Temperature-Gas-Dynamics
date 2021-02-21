@@ -6,5 +6,7 @@ One can generate normal shock tables using this solver for hypersonic speeds (>m
 ## Prandtl-Meyer expansion
 Expanding flow around a convex corner at hypersonic speeds and high-termperatures is explored and Prandtl-Meyer angles for the same have been evaluated. This is obtained by seeking solutions numerically to the governing ODE for PM-angles and the equation of state. Trends are matched with plots in Vincenti and Kruger and there is a significant match. TODO-pics and charts
 ## Area-Mach relations for a deLaval Nozzle
-Dissociating air flow through a de-Laval nozzle is implemented using this solver and the results are compared using the "rocket" problem of NASA CEA. A Cantera implentation in Julia will soon be added to see how the solver compares and performs. 
-TODO-add plots of Cantera vs. this solver.
+Dissociating air flow through a de-Laval nozzle is implemented using this solver and the results are compared using the "rocket" problem of NASA CEA. A Cantera implentation in Julia will soon be added to see how the solver compares and performs. \
+TODO\
+1. add plots of Cantera vs. this solver.
+2. add usage examples
